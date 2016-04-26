@@ -1,0 +1,143 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>LJ-video-converter-pds.sikuli</h2> <a href="LJ-video-converter-pds.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">def</span> create(value, s, e, layout, color, size):
+    setStart(s)
+    setLayout(layout)
+    createBlock(color)
+    setText(value, size)
+    setEnd(e)
+
+<span class="kw">def</span> createBlock(color):
+    <span class="kw">if</span> (color == <span class="str">"blue"</span>):
+        <span class="skw">rightClick</span>(Pattern(<img src="blocks.png" />).targetOffset(<span class="dig">173</span>,-<span class="dig">97</span>))
+    <span class="kw">else</span>:
+        <span class="skw">rightClick</span>(Pattern(<img src="blocks.png" />).targetOffset(<span class="dig">25</span>,-<span class="dig">97</span>))
+
+    <span class="skw">click</span>(Pattern(<img src="rightClick.png" />).targetOffset(-<span class="dig">51</span>,-<span class="dig">93</span>))
+    <span class="skw">wait</span>(<img src="modifiesPanel-2.png" />)
+
+<span class="kw">def</span> setStart(s):
+    <span class="skw">click</span>(Pattern(<img src="timeController.png" />).targetOffset(-<span class="dig">42</span>,-<span class="dig">15</span>))
+    <span class="skw">doubleClick</span>(Pattern(<img src="timeController.png" />).targetOffset(<span class="dig">41</span>,-<span class="dig">14</span>))
+    <span class="skw">type</span>(s[<span class="dig">0</span>])
+    <span class="skw">type</span>(s[<span class="dig">1</span>])
+    <span class="skw">type</span>(s[<span class="dig">2</span>])
+    <span class="skw">type</span>(Key.ENTER)
+
+<span class="kw">def</span> setEnd(e):
+    <span class="skw">wait</span>(Pattern(<img src="modifiesPanel.png" />).targetOffset(-<span class="dig">31</span>,<span class="dig">1</span>))
+    <span class="skw">click</span>(Pattern(<img src="modifiesPanel-1.png" />).targetOffset(<span class="dig">100</span>,<span class="dig">1</span>))
+    <span class="skw">doubleClick</span>(Pattern(<img src="endTime.png" />).targetOffset(-<span class="dig">10</span>,-<span class="dig">14</span>))
+    <span class="skw">type</span>(e[<span class="dig">0</span>])
+    <span class="skw">type</span>(e[<span class="dig">1</span>])
+    <span class="skw">type</span>(e[<span class="dig">2</span>])
+    <span class="skw">click</span>(Pattern(<img src="endTime.png" />).targetOffset(<span class="dig">2</span>,<span class="dig">33</span>))
+
+<span class="kw">def</span> setText(value, font):
+    <span class="skw">click</span>(Pattern(<img src="modifiesPanel.png" />).targetOffset(-<span class="dig">31</span>,<span class="dig">1</span>))
+    <span class="skw">wait</span>(<img src="textModifies.png" />)
+    <span class="skw">doubleClick</span>(Pattern(<img src="textModifies-1.png" />).targetOffset(-<span class="dig">65</span>,-<span class="dig">26</span>))
+    <span class="skw">type</span>(<span class="str">"a"</span>, Key.CTRL)
+    paste(value.decode(<span class="str">"utf8"</span>))
+    setFontSize(font)
+    <span class="skw">click</span>(Pattern(<img src="updateModifiesPanel.png" />).targetOffset(<span class="dig">77</span>,<span class="dig">13</span>))
+
+<span class="kw">def</span> setLayout(value):
+    <span class="kw">if</span> (value == <span class="dig">1</span>):
+        <span class="skw">click</span>(Pattern(<img src="zIndex.png" />).targetOffset(-<span class="dig">14</span>,-<span class="dig">209</span>))
+    <span class="kw">if</span> (value == <span class="dig">2</span>):
+        <span class="skw">click</span>(Pattern(<img src="zIndex.png" />).targetOffset(-<span class="dig">11</span>,-<span class="dig">171</span>))
+    <span class="kw">if</span> (value == <span class="dig">3</span>):
+        <span class="skw">click</span>(Pattern(<img src="zIndex.png" />).targetOffset(-<span class="dig">14</span>,-<span class="dig">134</span>))
+    <span class="kw">if</span> (value == <span class="dig">4</span>):
+        <span class="skw">click</span>(Pattern(<img src="zIndex.png" />).targetOffset(-<span class="dig">14</span>,-<span class="dig">100</span>))
+    <span class="kw">if</span> (value == <span class="dig">5</span>):
+        <span class="skw">click</span>(Pattern(<img src="zIndex.png" />).targetOffset(-<span class="dig">12</span>,-<span class="dig">61</span>))
+    <span class="kw">if</span> (value == <span class="dig">6</span>):
+        <span class="skw">click</span>(Pattern(<img src="zIndex.png" />).targetOffset(-<span class="dig">14</span>,-<span class="dig">23</span>))
+    <span class="kw">if</span> (value == <span class="dig">7</span>):
+        <span class="skw">click</span>(Pattern(<img src="zIndex.png" />).targetOffset(-<span class="dig">13</span>,<span class="dig">12</span>))
+    <span class="kw">if</span> (value == <span class="dig">8</span>):
+        <span class="skw">click</span>(Pattern(<img src="zIndex.png" />).targetOffset(-<span class="dig">12</span>,<span class="dig">50</span>))
+
+<span class="kw">def</span> setFontSize(value):
+    <span class="skw">doubleClick</span>(Pattern(<img src="fontSize.png" />).targetOffset(-<span class="dig">14</span>,-<span class="dig">29</span>))
+    <span class="skw">type</span>(value)
+
+<span class="cmt"># test</span>
+<span class="cmt">#create("中文", ["00", "00", "17"], ["00", "02", "15"], 1, "main", "16")</span>
+<span class="cmt">#create("中文2", ["00", "00", "17"], ["00", "03", "00"], 2, "main", "18")</span>
+
+</pre>
+</body>
+</html>
