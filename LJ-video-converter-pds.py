@@ -7,9 +7,9 @@ def create(value, s, e, layout, color, size):
 
 def createBlock(color):
     if (color == "blue"):
-        rightClick(Pattern("blocks.png").targetOffset(173,-97))
+        rightClick(Pattern("blocks.png").targetOffset(32,-91))
     else:
-        rightClick(Pattern("blocks.png").targetOffset(25,-97))
+        rightClick(Pattern("blocks.png").targetOffset(173,-97))
 
     click(Pattern("rightClick.png").targetOffset(-51,-93))
     wait("modifiesPanel-2.png")
